@@ -302,3 +302,7 @@ footer p {
         grid-template-columns: 1fr; /* تک ستونه در موبایل */
     }
 }
+
+.card-titr{
+    text-align: center;
+}
