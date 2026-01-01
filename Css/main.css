@@ -1,0 +1,304 @@
+/* =========================================
+   1. RESET & VARIABLES (تنظیمات پایه و رنگ‌ها)
+   ========================================= */
+@import url('https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css');
+
+:root {
+    /* پالت رنگی مدرن 2026 */
+    --bg-dark: #0f172a;       /* سرمه‌ای خیلی تیره */
+    --bg-card: rgba(30, 41, 59, 0.6); /* رنگ شیشه‌ای کارت‌ها */
+    --accent: #38bdf8;        /* آبی نئونی */
+    --accent-glow: rgba(56, 189, 248, 0.4);
+    --text-main: #f1f5f9;     /* سفید یخی */
+    --text-muted: #94a3b8;    /* خاکستری روشن */
+    --border-glass: rgba(255, 255, 255, 0.1);
+    --gradient-text: linear-gradient(135deg, #38bdf8 0%, #818cf8 100%);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Vazirmatn', sans-serif;
+    background-color: var(--bg-dark);
+    /* پس‌زمینه گرادینت به جای عکس شلوغ */
+    background-image:
+        radial-gradient(at 0% 0%, rgba(56, 189, 248, 0.15) 0px, transparent 50%),
+        radial-gradient(at 100% 0%, rgba(129, 140, 248, 0.15) 0px, transparent 50%);
+    background-attachment: fixed;
+    color: var(--text-main);
+    line-height: 1.8;
+    overflow-x: hidden;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.3s ease;
+}
+
+/* =========================================
+   2. HEADER & NAV (هدر و منو)
+   ========================================= */
+header {
+    text-align: center;
+    padding: 80px 20px 40px;
+    /* حذف عکس‌های قدیمی و استفاده از فضای تمیز */
+    background: transparent;
+}
+
+header h1 {
+    font-size: 3rem;
+    font-weight: 900;
+    margin-bottom: 10px;
+    background: var(--gradient-text);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 10px 30px rgba(56, 189, 248, 0.3);
+}
+
+header p {
+    color: var(--text-muted);
+    font-size: 1.2rem;
+}
+
+/* منوی ناوبری مدرن */
+.main-nav {
+    position: sticky;
+    top: 20px;
+    z-index: 100;
+    width: fit-content;
+    margin: 0 auto 40px;
+    padding: 10px 30px;
+    background: rgba(15, 23, 42, 0.8);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid var(--border-glass);
+    border-radius: 50px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.main-nav ul {
+    display: flex;
+    gap: 30px;
+    list-style: none;
+}
+
+.main-nav ul li a {
+    color: var(--text-main);
+    font-weight: 500;
+    font-size: 0.95rem;
+    position: relative;
+}
+
+.main-nav ul li a:hover {
+    color: var(--accent);
+}
+
+.main-nav ul li a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -4px;
+    left: 0;
+    background: var(--accent);
+    transition: width 0.3s;
+}
+
+.main-nav ul li a:hover::after {
+    width: 100%;
+}
+
+/* =========================================
+   3. LAYOUT & GRID (چیدمان)
+   ========================================= */
+.container {
+    width: min(1200px, 92vw);
+    margin: 0 auto;
+    padding-bottom: 80px;
+}
+
+/* عنوان‌های وسط صفحه */
+.mini-cards-title, .explain {
+    text-align: center;
+    color: var(--text-main);
+    margin: 60px 0 30px;
+}
+
+.mini-cards-title {
+    font-size: 2rem;
+    font-weight: 800;
+    border-bottom: 2px solid transparent;
+    border-image: var(--gradient-text) 1;
+    display: inline-block;
+    padding-bottom: 10px;
+}
+
+/* گرید اصلی */
+.cards-grid, .mini-cards-grid {
+    display: grid;
+    /* این خط باعث میشه تو موبایل 1 ستون و تو دسکتاپ چند ستون بشه خودکار */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+    justify-content: center;
+}
+
+/* =========================================
+   4. CARDS (کارت‌ها - شیشه‌ای و خفن)
+   ========================================= */
+.card, .mini-card {
+    background: var(--bg-card);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--border-glass);
+    border-radius: 24px;
+    padding: 30px;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: hidden;
+    color: var(--text-main);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.card:hover, .mini-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--accent);
+    box-shadow: 0 20px 40px -5px rgba(0, 0, 0, 0.4);
+}
+
+/* آیکون داخل کارت‌ها */
+.card-icon {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    color: var(--accent);
+    filter: drop-shadow(0 0 10px var(--accent-glow));
+}
+
+.card h2 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+}
+
+.card p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    margin-bottom: 25px;
+}
+
+/* دکمه داخل کارت */
+.card a {
+    display: inline-block;
+    padding: 10px 24px;
+    background: var(--gradient-text);
+    color: #fff;
+    border-radius: 50px;
+    font-weight: 700;
+    box-shadow: 0 4px 15px var(--accent-glow);
+}
+
+.card a:hover {
+    box-shadow: 0 8px 25px var(--accent-glow);
+    transform: scale(1.05);
+}
+
+/* لینک مخفی برای کارت‌های کوچک */
+.mini-card-link {
+    display: block;
+    height: 100%;
+}
+
+.mini-card strong {
+    color: var(--accent);
+    display: block;
+    margin-bottom: 10px;
+    font-size: 1.1em;
+}
+
+/* =========================================
+   5. SPECIFIC: Q&A IMAGES (صفحه تمرین و ویلسون)
+   ========================================= */
+.qa-images {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin: 20px 0 40px;
+    flex-wrap: wrap;
+}
+
+.qa-images img {
+    max-width: 100%;
+    width: 450px;
+    border-radius: 16px;
+    border: 2px solid var(--border-glass);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    transition: transform 0.3s;
+}
+
+.qa-images img:hover {
+    transform: scale(1.02);
+}
+
+/* =========================================
+   6. FOOTER & UTILS
+   ========================================= */
+footer {
+    margin-top: 80px;
+    padding: 40px 20px;
+    text-align: center;
+    border-top: 1px solid var(--border-glass);
+    background: rgba(2, 6, 23, 0.5);
+}
+
+footer p {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+.back {
+    display: inline-block;
+    margin-top: 15px;
+    color: var(--accent);
+    font-weight: bold;
+    border: 1px solid var(--accent);
+    padding: 8px 20px;
+    border-radius: 50px;
+}
+
+.back:hover {
+    background: var(--accent);
+    color: #fff;
+}
+
+/* =========================================
+   7. RESPONSIVE (موبایل)
+   ========================================= */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2.2rem;
+    }
+
+    .main-nav {
+        width: 90%;
+        top: 10px;
+        padding: 10px;
+    }
+
+    .main-nav ul {
+        gap: 15px;
+        justify-content: center;
+        flex-wrap: wrap;
+        font-size: 0.85rem;
+    }
+
+    .cards-grid, .mini-cards-grid {
+        grid-template-columns: 1fr; /* تک ستونه در موبایل */
+    }
+}
