@@ -1,0 +1,8 @@
+body{
+    background: linear-gradient(99deg ,white 5%,red,orange,saddlebrown,deepskyblue, black);
+}
+
+h1{
+    text-align: center;
+    height: 83px;
+}
